@@ -19,13 +19,17 @@ def to_datetime(date_string: str, language: str) -> Union[datetime, str]:
     """ correct problem with locale in Windows platform """
     if os.name == 'nt':
         locales = {"pt": "Portuguese_Brazil.1252", "en": "Portuguese_Brazil.1252"}
-    
-    locale.setlocale(locale.LC_TIME, locales[language])
+    try:
+        locale.setlocale(locale.LC_TIME, locales[language])
+    except:
+        pass
 
     dd_mm_aaaa = "%d/%m/%Y"
+    aaaa_mm_dd = "%Y-%m-%d"
+    mm_dd_aaaa = "%m/%d/%Y"
     mmm_aaaa = "%b/%Y"
 
-    formats = [dd_mm_aaaa, mmm_aaaa]
+    formats = [dd_mm_aaaa, mmm_aaaa, aaaa_mm_dd, mm_dd_aaaa]
 
     for fmt in formats:
         try:
