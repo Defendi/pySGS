@@ -15,5 +15,8 @@ env/
 *.egg
 *.sh
 
+.project
+.pydevproject
+
 .coverage
 MANIFEST
